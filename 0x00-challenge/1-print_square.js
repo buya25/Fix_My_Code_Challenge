@@ -5,19 +5,23 @@
  * of the program.
 */
 
-
-if (process.argv.length <= 2) {
-    process.stderr.write("Missing argument\n");
-    process.stderr.write("Usage: ./1-print_square.js <size>\n");
-    process.stderr.write("Example: ./1-print_square.js 8\n");
-    process.exit(1)
+if (process.argv.length !== 3) {
+    console.error("Missing or too many arguments.");
+    console.log("Usage: ./1-print_square.js <size>");
+    process.exit(1);
 }
 
-size = parseInt(process.argv[2], 16)
+const size = parseInt(process.argv[2]);
 
-for (let i = 0 ; i < size ; i ++) {
-    for (let j = 0 ; j < size ; j ++) {
-        process.stdout.write("#");
+if (isNaN(size) || size <= 0) {
+    console.error("Invalid size argument. Please provide a positive integer.");
+    process.exit(1);
+}
+
+for (let i = 0; i < size; i++) {
+    let row = '';
+    for (let j = 0; j < size; j++) {
+        row += "#";
     }
-    process.stdout.write("\n");
+    console.log(row);
 }
